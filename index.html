@@ -21,7 +21,6 @@
 
 <body>
     <div class="container">
-
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2>Wilson Teacher Pending Contract Salary Calculator</h2>
@@ -88,11 +87,7 @@
                 <a href="http://www.readingeagle.com/news/article/wilson-teachers-vote-to-strike">Wilson teachers authorize strike</a>
             </div>
         </div>
-
-
     </div>
-
-
 
     <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -105,17 +100,9 @@
         var inc2 = 0.0325;
         var inc3 = 0.035;
 
-
         $(document).ready(function () {
-
-
-
-
-            // {vMax: 250000, aSign: '$'}
             $('#salary').autoNumeric('init');
         });
-
-
 
         $('#salary').change(function () {
             var salary = parseFloat($('#salary').autoNumeric('get'));
@@ -123,11 +110,8 @@
             var salary1 = parseFloat(parseFloat(salary) + (salary * inc1)).toFixed(2);
             var salary2 = parseFloat(parseFloat(salary1) + (salary1 * inc2)).toFixed(2);
             var salary3 = parseFloat(parseFloat(salary2) + (salary2 * inc3)).toFixed(2);
-            // $('#output').text(salary3);
 
-           // $('#year1').text('Year 1: ' + numeral(salary1).format('$0,00'));
-          //  $('#year2').text('Year 2: ' + numeral(salary2).format('$0,00'));
-            $('#year3').html('Last Year of Contract Salary: <u><b>' + numeral(salary3).format('$0,00')) + '</b></u>';
+            $('#year3').html('Last Year of Contract Salary: <u><b>' + numeral(salary3).format('$0,00.00')) + '</b></u>';
 
             var ctx = document.getElementById('myChart').getContext('2d');
             var myBarChart = new Chart(ctx, {
@@ -147,14 +131,12 @@
                 data: {
                     labels: ["Current", "'17 - '18", "'18 - '19", "'19 - '20"],
                     datasets: [{
-                        label: "Salary Increases",
-                        //backgroundColor: 'rgb(255, 99, 132)',
+                        label: "Salary",
                         backgroundColor: ['gray', 'blue', 'green', 'purple'],
                         borderColor: 'gray',
                         data: [salary, salary1, salary2, salary3]
                     }]
                 }
-                //options: options
             });
         })
     </script>
