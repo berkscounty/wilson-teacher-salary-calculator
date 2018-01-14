@@ -41,11 +41,11 @@
                     </span>
                 </div>
             </div>
-     
-        <div class="col-lg-4">
 
+            <div class="col-lg-4">
+
+            </div>
         </div>
-    </div>
 
         <div class="row">
             <div class="col-lg-4">
@@ -59,10 +59,10 @@
             </div>
         </div>
         <div class="row">
-                <div id="year3" class="col-12-lg text-center h4">
-    
-                </div>
+            <div id="year3" class="col-12-lg text-center h4">
+
             </div>
+        </div>
         <hr />
         <br />
         <div class="row">
@@ -108,7 +108,6 @@
 
         $('#calc').click(function () {
             var salary = parseFloat($('#salary').autoNumeric('get'));
-            debugger;
             var salary1 = parseFloat(parseFloat(salary) + (salary * inc1)).toFixed(2);
             var salary2 = parseFloat(parseFloat(salary1) + (salary1 * inc2)).toFixed(2);
             var salary3 = parseFloat(parseFloat(salary2) + (salary2 * inc3)).toFixed(2);
