@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Wilson Teacher Pending Contract Salary Calculator</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- Leave those next 4 lines if you care about users using IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Wilson Teacher Pending Contract Salary Calculator</h2>
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input id="salary" type="text" class="form-control" placeholder="current salary">
+                </div>
+            </div>
+            <div class="col-lg-4">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-lg-4">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="col-lg-4">
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <hr />
+        <br />
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3>Related News:</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="http://www.readingeagle.com/news/article/wilson-school-board-responds-to-strike-announcement">Wilson School Board responds to strike announcement</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="http://www.readingeagle.com/news/article/wilsons-teachers-set-jan-23-strike-date">Wilson's teachers set Jan. 23 strike date</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="http://www.readingeagle.com/news/article/wilson-teachers-stop-working-extra-hours">Wilson teachers stop working extra hours</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="http://www.readingeagle.com/news/article/wilson-teachers-vote-to-strike">Wilson teachers authorize strike</a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/autoNumeric.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script>
+        var inc1 = 0.03;
+        var inc2 = 0.0325;
+        var inc3 = 0.035;
+
+
+        $(document).ready(function () {
+
+
+
+
+            // {vMax: 250000, aSign: '$'}
+            $('#salary').autoNumeric('init');
+        });
+
+
+
+        $('#salary').change(function () {
+            var salary = parseFloat($('#salary').autoNumeric('get'));
+            debugger;
+            var salary1 = parseFloat(parseFloat(salary) + (salary * inc1)).toFixed(2);
+            var salary2 = parseFloat(parseFloat(salary1) + (salary1 * inc2)).toFixed(2);
+            var salary3 = parseFloat(parseFloat(salary2) + (salary2 * inc3)).toFixed(2);
+            // $('#output').text(salary3);
+
+            $('#year1').text('Year 1: ' + numeral(salary1).format('$0,00'));
+            $('#year2').text('Year 2: ' + numeral(salary2).format('$0,00'));
+            $('#year3').text('Year 3: ' + numeral(salary3).format('$0,00'));
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                // Include a dollar sign in the ticks
+                                callback: function (value, index, values) {
+                                    return numeral(value).format('$0,00');
+                                }
+                            }
+                        }]
+                    }
+                },
+                type: 'bar',
+                data: {
+                    labels: ["Current", "'17 - '18", "'18 - '19", "'19 - '20"],
+                    datasets: [{
+                        label: "Salary Increases",
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        backgroundColor: ['gray', 'blue', 'green', 'purple'],
+                        borderColor: 'gray',
+                        data: [salary, salary1, salary2, salary3]
+                    }]
+                }
+                //options: options
+            });
+        })
+    </script>
+</body>
+
+</html>
