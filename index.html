@@ -49,13 +49,18 @@
             </div>
             <div class="col-lg-4">
                 <canvas id="myChart"></canvas>
+                <br />
+                <br />
             </div>
             <div class="col-lg-4">
 
             </div>
         </div>
-        <br />
-        <br />
+        <div class="row">
+            <div id="year3" class="col-12-lg text-center h4 bold">
+                
+            </div>
+        </div>
         <hr />
         <br />
         <div class="row">
@@ -120,9 +125,9 @@
             var salary3 = parseFloat(parseFloat(salary2) + (salary2 * inc3)).toFixed(2);
             // $('#output').text(salary3);
 
-            $('#year1').text('Year 1: ' + numeral(salary1).format('$0,00'));
-            $('#year2').text('Year 2: ' + numeral(salary2).format('$0,00'));
-            $('#year3').text('Year 3: ' + numeral(salary3).format('$0,00'));
+           // $('#year1').text('Year 1: ' + numeral(salary1).format('$0,00'));
+          //  $('#year2').text('Year 2: ' + numeral(salary2).format('$0,00'));
+            $('#year3').html('Last Year of Contract Salary: <u><b>' + numeral(salary3).format('$0,00')) + '</b></u>';
 
             var ctx = document.getElementById('myChart').getContext('2d');
             var myBarChart = new Chart(ctx, {
